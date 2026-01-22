@@ -7,17 +7,19 @@
 </head>
 <body>
     <form action="login" method="post" onsubmit="return validatePassportForm()">
-        <input type="text" placeholder="Enter your name" name="name">
-        <input type="email" placeholder="Enter Your Email" name="email">
-        <input type="password" placeholder="Enter your password" name="password">
-        <input type="number" placeholder="Enter mobilenumber" name="phoneNumber">
-        <input type="text" placeholder="Enter your gender" name="gender">
-        <input type="text" placeholder="nationality" name="nationality">
-        <input type="text" placeholder="Address" name="address">
-        <input type+"text" placeholder="country" name="country">
-        <input type="number" placeholder="Pin-code" name="pincode">
-        <input type="text" placeholder="Enter state" name="state">
+<input type="text" id="name" name="name" placeholder="Enter your name">
+<input type="email" id="email" name="email" placeholder="Enter your email">
+<input type="password" id="password" name="password" placeholder="Enter your password">
+<input type="number" id="phoneNumber" name="phoneNumber" placeholder="Enter mobile number">
+<input type="text" id="gender" name="gender" placeholder="Enter your gender">
+<input type="text" id="nationality" name="nationality" placeholder="Nationality">
+<input type="text" id="address" name="address" placeholder="Address">
+<input type="text" id="country" name="country" placeholder="Country">
+<input type="number" id="pincode" name="pincode" placeholder="Pin-code">
+<input type="text" id="state" name="state" placeholder="State">
+
         <button type="submit">Submit</button>
     </form>
+    <script src="script.js"></script>
 </body>
 </html>
