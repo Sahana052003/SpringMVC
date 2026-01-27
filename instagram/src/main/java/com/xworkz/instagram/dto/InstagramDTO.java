@@ -1,5 +1,6 @@
 package com.xworkz.instagram.dto;
 
+
 public class InstagramDTO {
     private int id;
     private String userName;
