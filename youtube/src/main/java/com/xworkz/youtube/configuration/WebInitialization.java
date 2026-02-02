@@ -1,10 +1,12 @@
-package com.xworkz.homepage.configuration;
+package com.xworkz.youtube.configuration;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-//@EnableWebMvc
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
 public class WebInitialization extends AbstractAnnotationConfigDispatcherServletInitializer implements WebMvcConfigurer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -17,11 +19,11 @@ public class WebInitialization extends AbstractAnnotationConfigDispatcherServlet
     }
 
     @Override
-   protected String[] getServletMappings() {
+    protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-//    @Override
-//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer defaultServletHandlerConfigurer){
-//        defaultServletHandlerConfigurer.enable();
-//    }
+    @Override
+    public void  configureDefaultServletHandling(DefaultServletHandlerConfigurer defaultServletHandlerConfigurer){
+        defaultServletHandlerConfigurer.enable();
+    }
 }

@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Page</title>
  <style>
+
  /* body */
         body {
             background-color: white;
             color: white;
-            background-image: url("images/download.jpg");
-            height: 100px;
+            background-image: url("resources/images/download (1).jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 400px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             padding-top: 50px;
+
         }
 
         /* Navbar section */
@@ -62,6 +67,7 @@
 </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <form action="signup" method="post">

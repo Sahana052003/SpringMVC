@@ -13,6 +13,10 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url("resources/images/images (5).jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Form box */

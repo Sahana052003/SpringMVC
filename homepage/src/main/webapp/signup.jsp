@@ -10,7 +10,8 @@ body {
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;        }
+            align-items: center;
+    }
 
         /* Form box */
         form {
@@ -57,7 +58,7 @@ body {
 </style>
 </head>
 <body>
-    <img src="images/images (5).jpg">
+    
 <form action="status" method="post" onsubmit="return validateSignup()">
 
     <input type="text" name="firstName" placeholder="First Name">
@@ -72,6 +73,6 @@ body {
 
     <button type="submit">Sign Up</button>
 </form>
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
