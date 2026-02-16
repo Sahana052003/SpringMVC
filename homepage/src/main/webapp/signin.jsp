@@ -77,10 +77,7 @@ button:hover {
 </form>
 
 <script>
-// Show error only if ?error=true is present in URL
-if (window.location.search.includes("error=true")) {
-    document.getElementById("errorMessage").style.display = "block";
-}
+
 </script>
 
 </body>

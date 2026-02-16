@@ -54,6 +54,12 @@ public class HomepageService {
 
         try {
             String decryptedPassword = EncDec.decrypt(storedEncryptedPassword); // decrypt
+
+            System.out.println("Encrypted from DB: " + storedEncryptedPassword);
+            System.out.println("Decrypted value: " + decryptedPassword);
+
+
+
             if (!decryptedPassword.equals(password)) {
                 throw new InvalidException("Password mismatch");
             }
