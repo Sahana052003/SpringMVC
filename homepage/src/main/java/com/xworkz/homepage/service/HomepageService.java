@@ -58,8 +58,6 @@ public class HomepageService {
             System.out.println("Encrypted from DB: " + storedEncryptedPassword);
             System.out.println("Decrypted value: " + decryptedPassword);
 
-
-
             if (!decryptedPassword.equals(password)) {
                 throw new InvalidException("Password mismatch");
             }
@@ -70,5 +68,9 @@ public class HomepageService {
         System.out.println("Login successful for: " + email);
         return true;
     }
+
+
+
+
 
 }

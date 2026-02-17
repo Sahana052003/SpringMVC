@@ -101,8 +101,9 @@ function validateField(inputId) {
 
     switch(inputId) {
         case 'firstName':
-            if (value.length < 5 || /\d/.test(value)) {
-                showError('firstName','firstNameError','First Name: min 5 chars, no numbers');
+        const nameError=/^[A-Za-z]{5,}$/;
+            if (!(nameError).value.length < 5 || /\d/.test(value) ) {
+                showError('firstName','firstNameError','First Name: min 5 chars,no numbers,symbols,characters,space');
             } else showSuccess('firstName');
             break;
 

@@ -64,7 +64,7 @@ button:hover {
 </head>
 <body>
 
-<form action="login" method="post">
+<form action="login" method="post" >
     <h2 style="text-align:center;">Sign In</h2>
 
     <!-- Error message -->
