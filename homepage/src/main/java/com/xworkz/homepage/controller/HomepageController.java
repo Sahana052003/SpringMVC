@@ -6,6 +6,7 @@ import com.xworkz.homepage.exception.InvalidException;
 import com.xworkz.homepage.service.HomepageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,24 +55,30 @@ public class HomepageController {
             System.out.println("Signup successfully");
             return "success";
         } catch (InvalidException obj) {
-            System.out.println("Failed to signup");
+            System.out.println("Failed to signup"+obj.getMessage());
             return "signup";
         }
     }
 
+    @PostMapping("/index")
+    public String indexPage() {
+        System.out.println("Signup Success");
+        return "index";
+    }
+
+
 
     @PostMapping("/login")
     public String login(@RequestParam String email,
-                        @RequestParam String password) {
+                        @RequestParam String password, Model model) {
         try {
-            boolean isLogin = homepageService.signinValidation(email, password);
-            System.out.println("Login successful");
-            return "home"; // goes to home.jsp if login successful
+            homepageService.signinValidation(email, password);
+            return "home";
+
         } catch (InvalidException e) {
-            System.out.println("Login failed: " + e.getMessage());
-            // Pass error message to JSP
-            System.out.println("loginError" + "Invalid Email or Password");
-            return "signin"; // render signin.jsp again
+            System.out.println("Login Failed : " + e.getMessage());
+            model.addAttribute("errorMessage", "Invalid email/password");
+            return "signin";   // stay on same page
         }
     }
 }

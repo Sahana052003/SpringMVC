@@ -14,7 +14,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 400px;
+            height: 700px;
+
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -50,7 +51,7 @@
             border-radius: 30px;
             font-size: 16px;
             cursor: pointer;
-            color: white;
+            color: black;
             font-weight: 600;
 
         }

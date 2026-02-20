@@ -18,23 +18,27 @@ public class InsertPageDAO {
     String query="insert into homepage_table values(?,?,?,?,?)";
     public String validateHomePage(HomepageDTO homepageDTO) {
         String encryptedPassword=null;
-        try{
+        try
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection= DriverManager.getConnection(url,userName,password);
-            PreparedStatement ps=connection.prepareStatement(query);
+
+        try (Connection connection = DriverManager.getConnection(url, userName, password);
+             PreparedStatement ps = connection.prepareStatement(query)) {
 
 
             encryptedPassword = EncDec.encrypt(homepageDTO.getPassword());
 
-            ps.setString(1,homepageDTO.getFirstName());
-            ps.setString(2,homepageDTO.getLastName());
-            ps.setString(3,homepageDTO.getEmail());
-            ps.setString(4,encryptedPassword);
-            ps.setString(5,encryptedPassword);
+            ps.setString(1, homepageDTO.getFirstName());
+            ps.setString(2, homepageDTO.getLastName());
+            ps.setString(3, homepageDTO.getEmail());
+            ps.setString(4, encryptedPassword);
+            ps.setLong(5, homepageDTO.getMobileNumber());
+            //ps.setString(5,encryptedPassword);
             int rows = ps.executeUpdate();
-            if(rows>0){
+            if (rows > 0) {
                 System.out.println("Executed Successfully");
             }
+        }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

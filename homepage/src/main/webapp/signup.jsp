@@ -84,6 +84,10 @@ button:hover {
     <input type="email" id="email" name="email" placeholder="Email">
     <span id="emailError" class="error-message"></span>
 
+    <label>Phone Number</label>
+    <input type="text" id="phoneNumber" name="mobileNumber" placeholder="Phone Number">
+    <span id="phoneNumberError" class="error-message"></span>
+
     <label>Password</label>
     <input type="password" id="password" name="password" placeholder="Password">
     <span id="passwordError" class="error-message"></span>
@@ -101,21 +105,33 @@ function validateField(inputId) {
 
     switch(inputId) {
         case 'firstName':
-        const nameError=/^[A-Za-z]{5,}$/;
-            if (!(nameError).value.length < 5 || /\d/.test(value) ) {
+             const nameRegex = /^[A-Za-z]{5,}$/;
+                if (!nameRegex.test(value)) {
                 showError('firstName','firstNameError','First Name: min 5 chars,no numbers,symbols,characters,space');
             } else showSuccess('firstName');
             break;
 
-        case 'lastName':
-            if (value.length < 1) showError('lastName','lastNameError','Last Name: at least 1 character');
-            else showSuccess('lastName');
-            break;
+       case 'lastName':
+           const lastRegex = /^[A-Za-z ]+$/;
+           if (!lastRegex.test(value)) {
+               showError('lastName','lastNameError',
+               'no numbers,symbols,characters,space');
+           } else showSuccess('lastName');
+           break;
 
         case 'email':
             if (!value.includes('@gmail.com')) showError('email','emailError','Email must contain @gmail.com');
             else showSuccess('email');
             break;
+
+
+            case 'phoneNumber':
+                const phoneRegex = /^[6-9]\d{9}$/;
+                if (!phoneRegex.test(value))
+                    showError('phoneNumber','phoneNumberError','Enter valid 10-digit mobile number');
+                else showSuccess('phoneNumber');
+                break;
+
 
         case 'password':
             const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{6,}$/;

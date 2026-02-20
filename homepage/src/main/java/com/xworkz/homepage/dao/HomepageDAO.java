@@ -12,20 +12,17 @@ public class HomepageDAO {
     String password = "Ammu@5182603";
     String query="select password from homepage_table where email=?";
     public String dataEntered(String email) {
-        String name = "null";
+        String name = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection=DriverManager.getConnection(url,userName,password);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,email);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
             name=resultSet.getString("password");
-                System.out.println("Password for the email is : " + name );
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

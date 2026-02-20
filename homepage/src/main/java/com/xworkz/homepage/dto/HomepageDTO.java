@@ -17,5 +17,6 @@ public class HomepageDTO {
     private String email;
     private String password;
     private String confirmpassword;
+    private Long mobileNumber;
 
 }

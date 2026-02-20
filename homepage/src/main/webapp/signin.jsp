@@ -54,12 +54,25 @@ button:hover {
     background-color: #388E3C;
 }
 
+
 #errorMessage {
     color: red;
     font-size: 14px;
     text-align: center;
     display: none; /* hide initially */
 }
+.error-box {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
 </style>
 </head>
 <body>
@@ -68,17 +81,22 @@ button:hover {
     <h2 style="text-align:center;">Sign In</h2>
 
     <!-- Error message -->
-    <div id="errorMessage">Invalid Email or Password</div>
+<% String loginErrorMessage = (String) request.getAttribute("errorMessage"); %>
+
+<% if (loginErrorMessage != null) { %>
+    <div class="error-box">
+        <%= loginErrorMessage %>
+    </div>
+<% } %>
 
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Password" required>
 
-    <button type="submit">Sign In</button>
+    <button type="submit" class="button">Sign In</button>
 </form>
 
-<script>
 
-</script>
+
 
 </body>
 </html>
