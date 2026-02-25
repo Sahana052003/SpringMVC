@@ -106,6 +106,11 @@
         </button>
 
     </form>
+
+
+
+
+    <a href="getDetails" class="btn btn-success w-100">Get Data</a>
 </div>
 
 <script>

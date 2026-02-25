@@ -11,6 +11,12 @@ import javax.persistence.*;
 @Table(name = "facebook_table")
 @AllArgsConstructor
 @NoArgsConstructor
+
+
+
+
+@NamedQuery(name = "data",query = "select entities from FacebookEntity entities")
+
 public class FacebookEntity {
 
 
