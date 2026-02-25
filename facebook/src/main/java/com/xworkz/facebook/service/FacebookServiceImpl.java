@@ -7,6 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class FacebookServiceImpl implements FacebookService{
     @Autowired
@@ -43,5 +47,27 @@ public class FacebookServiceImpl implements FacebookService{
             return false;
         }
 
+
+
+    }
+
+    @Override
+    public List<FacebookDTO> getDTO() {
+        List<FacebookEntity> facebookEntityList = facebookDAO.getFacebookData();
+
+
+        if (!facebookEntityList.isEmpty()) {
+            List<FacebookDTO> facebookDTOS = new ArrayList<>();
+            facebookEntityList.forEach(entity -> {
+                FacebookDTO facebookDTO = new FacebookDTO();
+
+                BeanUtils.copyProperties(entity, facebookDTO);
+                facebookDTOS.add(facebookDTO);
+            });
+
+            return facebookDTOS;
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
