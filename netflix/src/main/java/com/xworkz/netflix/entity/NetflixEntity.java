@@ -12,6 +12,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
+
+@NamedQuery(name = "readData",query = "select entities from NetflixEntity entities")
+
 public class NetflixEntity {
 
 

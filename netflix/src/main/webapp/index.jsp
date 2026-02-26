@@ -82,7 +82,7 @@
    <form action="login" method="post" onsubmit="return validateForm()">
 
        <label>Full Name</label>
-       <input type="text" id="name" name="name">
+       <input type="text" id="name" name="name" required>
        <div id="nameError" class="error"></div>
 
        <label>Email</label>
@@ -117,6 +117,8 @@
        <button type="submit">Register</button>
 
    </form>
+
+   <a href="getDetails" class="btn btn-success w-100">Get Data</a>
    </div>
 
 <script>
@@ -132,7 +134,7 @@ function validateForm() {
     const plan = document.getElementById("plan");
     const gender = document.querySelector('input[name="gender"]:checked');
 
-    const nameRegex = /^[A-Za-z ]{3,}$/;
+const nameRegex = /^[A-Za-z ]{5,}$/;
     const emailRegex = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{6,}$/;
     const mobileRegex = /^[6-9]\d{9}$/;
@@ -145,7 +147,7 @@ function validateForm() {
 
     // Name validation
     if (!nameRegex.test(name.value.trim())) {
-        showError(name,"nameError","Enter valid name (min 3 letters)");
+        showError(name,"nameError","Enter valid name (min 5 letters)");
         valid = false;
     } else showSuccess(name);
 

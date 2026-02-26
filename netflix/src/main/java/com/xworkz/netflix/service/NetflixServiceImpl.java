@@ -7,6 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 @Service
 public class NetflixServiceImpl implements NetflixService {
@@ -46,5 +50,25 @@ public class NetflixServiceImpl implements NetflixService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<NetflixDTO> getDTO() {
+        List<NetflixEntity> netflixEntities = netflixDAO.getNetflixData();
+
+
+        if (!netflixEntities.isEmpty()) {
+            List<NetflixDTO> facebookDTOS = new ArrayList<>();
+            netflixEntities.forEach(entity -> {
+                NetflixDTO netflixDTO = new NetflixDTO();
+
+                BeanUtils.copyProperties(entity, netflixDTO);
+                facebookDTOS.add(netflixDTO);
+            });
+
+            return facebookDTOS;
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
