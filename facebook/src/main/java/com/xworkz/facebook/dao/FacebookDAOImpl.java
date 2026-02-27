@@ -18,7 +18,7 @@ public class FacebookDAOImpl implements FacebookDAO{
 
 
     @Override
-    public void accessData(FacebookEntity facebookEntity) {
+    public boolean accessData(FacebookEntity facebookEntity) {
 
 
         System.out.println("Registered Data is saved : " + facebookEntity);
@@ -29,9 +29,10 @@ public class FacebookDAOImpl implements FacebookDAO{
             transaction.begin();
             entityManager.persist(facebookEntity);
             transaction.commit();
-
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
             entityManager.close();
 
@@ -52,7 +53,40 @@ public class FacebookDAOImpl implements FacebookDAO{
             return Collections.emptyList();
     }finally {
             entityManager.close();
+        }
+        }
 
+    @Override
+    public FacebookEntity getDetailsBasedOnEmail(String email) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            Query query = entityManager.createNamedQuery("readEmail");
+            query.setParameter("emailId",email);
+            FacebookEntity facebook =(FacebookEntity) query.getSingleResult();
+            return facebook;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }finally {
+            entityManager.close();
         }
+    }
+
+    @Override
+    public FacebookEntity getDetailsBasedOnPhoneNumber(Long phoneNumber) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            Query query = entityManager.createNamedQuery("readmobile");
+            query.setParameter("mobileNumber",phoneNumber);
+            FacebookEntity facebook =(FacebookEntity) query.getSingleResult();
+            return facebook;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }finally {
+            entityManager.close();
         }
+    }
 }

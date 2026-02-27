@@ -25,22 +25,20 @@ public class FacebookController {
 
 
     @PostMapping("register")
-    public String registerForm(FacebookDTO facebookDTO, Model model){
-        boolean validate=facebookService.registerUser(facebookDTO);
+    public String registerForm(FacebookDTO facebookDTO, Model model) {
+        String isVaild = facebookService.registerUser(facebookDTO);
         System.out.println("Data is entered : " + facebookDTO);
-
-
-
-        if(validate){
-            model.addAttribute("message","Register Successfully");
-            model.addAttribute("color","green");
-        }else {
-            model.addAttribute("message","Failed to Register");
-            model.addAttribute("color","red");
+        if(isVaild.equalsIgnoreCase("Registered successfully")) {
+            model.addAttribute("message",isVaild);
+            return "index";
+        }else if (isVaild.equalsIgnoreCase("Not Registered")){
+            model.addAttribute("errormsg",isVaild);
+            return "index";
+        }else{
+            model.addAttribute("errormsg",isVaild);
+            return "index";
         }
-        return "index";
     }
-
 
 
     @GetMapping("getDetails")

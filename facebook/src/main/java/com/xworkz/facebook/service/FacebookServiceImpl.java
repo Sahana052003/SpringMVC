@@ -18,7 +18,7 @@ public class FacebookServiceImpl implements FacebookService{
 
 
     @Override
-    public boolean registerUser(FacebookDTO facebookDTO) {
+    public String registerUser(FacebookDTO facebookDTO) {
         String name = facebookDTO.getName();
         String email = facebookDTO.getEmail();
         String password = facebookDTO.getPassword();
@@ -36,22 +36,32 @@ public class FacebookServiceImpl implements FacebookService{
                 phoneNumber != null && String.valueOf(phoneNumber).matches(phonePattern) &&
                 gender != null && gender != null &&
                 (gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("female"))
-                && country!=null &&  !country.trim().isEmpty()){
+                && country != null && !country.trim().isEmpty()) {
 
-            FacebookEntity facebookEntity=new FacebookEntity();
-            BeanUtils.copyProperties(facebookDTO,facebookEntity);
-
-            facebookDAO.accessData(facebookEntity);
-            return true;
-        }else {
-            return false;
+        FacebookDTO emailExists = checkEmailExists(email);
+        if (emailExists != null) {
+            return "Email already exists";
+        }
+        FacebookDTO phoneExists = checkPhoneNumber(phoneNumber);
+        if (phoneExists != null) {
+            return "Phone number already exists";
         }
 
+        FacebookEntity entity = new FacebookEntity();
+        BeanUtils.copyProperties(facebookDTO, entity);
 
-
+        if (facebookDAO.accessData(entity)) {
+            return "Registered successfully";
+        }
+        return "Not Registered";
     }
+         return "Data already exits";
+ }
 
-    @Override
+
+
+
+        @Override
     public List<FacebookDTO> getDTO() {
         List<FacebookEntity> facebookEntityList = facebookDAO.getFacebookData();
 
@@ -69,5 +79,31 @@ public class FacebookServiceImpl implements FacebookService{
         } else {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public FacebookDTO checkEmailExists(String emailId) {
+        FacebookEntity facebook = facebookDAO.getDetailsBasedOnEmail(emailId);
+
+        if (facebook != null) {
+            FacebookDTO facebookDTO = new FacebookDTO();
+            BeanUtils.copyProperties(facebook, facebookDTO);
+            return facebookDTO;
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public FacebookDTO checkPhoneNumber(Long phoneNumber) {
+        FacebookEntity facebookEntity=facebookDAO.getDetailsBasedOnPhoneNumber(phoneNumber);
+
+        if(facebookEntity!=null){
+            FacebookDTO facebookDTO=new FacebookDTO();
+            BeanUtils.copyProperties(facebookEntity,facebookDTO);
+            return facebookDTO;
+        }
+        return null;
     }
 }

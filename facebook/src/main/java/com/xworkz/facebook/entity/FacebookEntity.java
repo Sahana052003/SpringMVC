@@ -16,7 +16,8 @@ import javax.persistence.*;
 
 
 @NamedQuery(name = "data",query = "select entities from FacebookEntity entities")
-
+@NamedQuery(name="readEmail",query = "select entity from FacebookEntity entity where entity.email=:emailId")
+@NamedQuery(name = "readmobile",query = "Select e from FacebookEntity e where e.phoneNumber=:mobileNumber")
 public class FacebookEntity {
 
 

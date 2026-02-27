@@ -46,8 +46,10 @@ public class WebConfiguration {
         return dataSource;
     }
 
+
     public Properties properties(){
         Properties properties=new Properties();
+        properties.setProperty("hibernate.format_sql","true");
         properties.setProperty("hibernate.hbm2ddl.auto","update");
         return properties;
     }

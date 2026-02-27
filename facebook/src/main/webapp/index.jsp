@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +51,8 @@
 
     <h3 class="text-center mb-4 text-primary">Facebook Registration</h3>
 
+<p style="color:green">${message}</p>
+<p style="color:red">${errormsg}</p>
     <form action="register" method="post" onsubmit="return validateForm()">
 
         <!-- Name -->

@@ -14,4 +14,5 @@ public class FacebookDTO {
     private Long phoneNumber;
     private String gender;
     private String country;
+    private String address;
 }
