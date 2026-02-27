@@ -5,7 +5,8 @@ import com.xworkz.facebook.entity.FacebookEntity;
 import java.util.List;
 
 public interface FacebookDAO {
-    void accessData(FacebookEntity facebookEntity);
+    boolean accessData(FacebookEntity facebookEntity);
     List<FacebookEntity> getFacebookData();
-
+    FacebookEntity getDetailsBasedOnEmail(String email);
+    FacebookEntity getDetailsBasedOnPhoneNumber(Long phoneNumber);
 }
