@@ -1,6 +1,7 @@
 package com.xworkz.facebook.dao;
 
 import com.xworkz.facebook.entity.FacebookEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -9,11 +10,19 @@ import java.util.List;
 
 @Repository
 public class FacebookDAOImpl implements FacebookDAO{
+
+    @Autowired
+    EntityManagerFactory entityManagerFactory;
+
+
+
+
     @Override
     public void accessData(FacebookEntity facebookEntity) {
+
+
         System.out.println("Registered Data is saved : " + facebookEntity);
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("register");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             EntityTransaction transaction = entityManager.getTransaction();
@@ -25,13 +34,12 @@ public class FacebookDAOImpl implements FacebookDAO{
             e.printStackTrace();
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
+
         }
     }
 
     @Override
     public List<FacebookEntity> getFacebookData() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("register");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             EntityTransaction transaction = entityManager.getTransaction();
@@ -44,7 +52,7 @@ public class FacebookDAOImpl implements FacebookDAO{
             return Collections.emptyList();
     }finally {
             entityManager.close();
-            entityManagerFactory.close();
+
         }
         }
 }
