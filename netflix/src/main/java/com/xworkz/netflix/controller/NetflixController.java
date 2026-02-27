@@ -24,17 +24,19 @@ public NetflixController(){
 
      @PostMapping("login")
       public String saveData(NetflixDTO netflixDTO, Model model){
-         boolean validate=netflixService.registerUser(netflixDTO);
+         String validate=netflixService.registerUser(netflixDTO);
          System.out.println("Data is : " + netflixDTO);
 
-         if(validate){
-             model.addAttribute("information","Register Successfully");
-             model.addAttribute("color","green");
-         }else {
-             model.addAttribute("information","Failed to Register");
-             model.addAttribute("color","red");
+         if(validate.equalsIgnoreCase("Registered successfully")){
+             model.addAttribute("information",validate);
+             return "index";
+         }else if(validate.equalsIgnoreCase("Not Registered")) {
+             model.addAttribute("information",validate);
+             return "index";
+         }else{
+             model.addAttribute("errormsg",validate);
+             return "index";
          }
-        return "index";
     }
 
 

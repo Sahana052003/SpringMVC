@@ -15,7 +15,7 @@ public class NetflixDAOImpl implements NetflixDAO {
     EntityManagerFactory entityManagerFactory;
 
     @Override
-    public void saveData(NetflixEntity entity) {
+    public boolean saveData(NetflixEntity entity) {
         System.out.println("Registered Data is saved : " + entity);
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -24,9 +24,10 @@ public class NetflixDAOImpl implements NetflixDAO {
             transaction.begin();
             entityManager.persist(entity);
             transaction.commit();
-
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
             entityManager.close();
 
@@ -45,9 +46,43 @@ public class NetflixDAOImpl implements NetflixDAO {
             return list;
         } catch (Exception e) {
             return Collections.emptyList();
-    }finally {
+        } finally {
             entityManager.close();
 
         }
+    }
+
+    @Override
+    public NetflixEntity getDetailsBasedOnEmail(String email) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            Query query = entityManager.createNamedQuery("readEmail");
+            query.setParameter("userEmail", email);
+            NetflixEntity facebook = (NetflixEntity) query.getSingleResult();
+            return facebook;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            entityManager.close();
         }
+    }
+
+    @Override
+    public NetflixEntity getDetailsBasedOnMobile(Long mobile) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            Query query = entityManager.createNamedQuery("readMobileNumber");
+            query.setParameter("cellNumber", mobile);
+            NetflixEntity facebook = (NetflixEntity) query.getSingleResult();
+            return facebook;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
 }

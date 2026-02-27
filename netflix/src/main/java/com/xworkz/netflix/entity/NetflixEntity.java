@@ -14,6 +14,11 @@ import javax.persistence.*;
 
 
 @NamedQuery(name = "readData",query = "select entities from NetflixEntity entities")
+@NamedQuery(name = "readEmail",query = "select e from NetflixEntity e where e.email=:userEmail")
+@NamedQuery(name = "readMobileNumber",query = "select e from NetflixEntity e where e.mobile=:cellNumber")
+
+
+
 
 public class NetflixEntity {
 
