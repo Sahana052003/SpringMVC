@@ -5,7 +5,8 @@ import com.xworkz.netflix.dto.NetflixDTO;
 import java.util.List;
 
 public interface NetflixService {
-    boolean registerUser(NetflixDTO netflixDTO);
+    String registerUser(NetflixDTO netflixDTO);
     List<NetflixDTO> getDTO();
-
+    NetflixDTO checkEmail(String email);
+    NetflixDTO checkMobileNumber(Long mobile);
 }

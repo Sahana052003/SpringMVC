@@ -19,7 +19,7 @@ public class NetflixServiceImpl implements NetflixService {
 
 
     @Override
-    public boolean registerUser(NetflixDTO netflixDTO) {
+    public String registerUser(NetflixDTO netflixDTO) {
         String name = netflixDTO.getName();
         String email = netflixDTO.getEmail();
         String password = netflixDTO.getPassword();
@@ -42,14 +42,24 @@ public class NetflixServiceImpl implements NetflixService {
                 plan != null && !plan.trim().isEmpty()) {
 
 
+            NetflixDTO emailExists = checkEmail(email);
+            if (emailExists != null) {
+                return "Email already exists";
+            }
+            NetflixDTO phoneExists = checkMobileNumber(mobile);
+            if (phoneExists != null) {
+                return "Phone number already exists";
+            }
+
             NetflixEntity entity = new NetflixEntity();
             BeanUtils.copyProperties(netflixDTO, entity);
 
-
-            netflixDAO.saveData(entity);
-            return true;
+            if (netflixDAO.saveData(entity)) {
+                return "Registered successfully";
+            }
+            return "Not Registered";
         }
-        return false;
+        return "Data already exits";
     }
 
     @Override
@@ -70,5 +80,31 @@ public class NetflixServiceImpl implements NetflixService {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public NetflixDTO checkEmail(String email) {
+        NetflixEntity netflixEntity=netflixDAO.getDetailsBasedOnEmail(email);
+
+        if(netflixEntity!=null){
+            NetflixDTO netflixDTO1=new NetflixDTO();
+            BeanUtils.copyProperties(netflixEntity,netflixDTO1);
+            return netflixDTO1;
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public NetflixDTO checkMobileNumber(Long mobile) {
+        NetflixEntity netflixEntity=netflixDAO.getDetailsBasedOnMobile(mobile);
+
+        if(netflixEntity!=null){
+            NetflixDTO netflixDTO=new NetflixDTO();
+            BeanUtils.copyProperties(netflixEntity,netflixDTO);
+            return netflixDTO;
+        }
+        return null;
     }
 }

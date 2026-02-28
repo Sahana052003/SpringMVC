@@ -13,4 +13,6 @@ public interface FacebookService {
 
     FacebookDTO checkPhoneNumber(Long phoneNumber);
 
+    FacebookDTO getId(int id);
+
 }

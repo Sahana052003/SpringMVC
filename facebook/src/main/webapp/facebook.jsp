@@ -30,6 +30,7 @@
 <td>${singleData.phoneNumber}</td>
 <td>${singleData.gender}</td>
 <td>${singleData.country}</td>
+<td><a href="getData?id=${singleData.id}">UPDATE</a></td>
 </tr>
 </c:forEach>
 </table>

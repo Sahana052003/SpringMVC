@@ -79,6 +79,10 @@
        </h3>
    </c:if>
 
+
+<p style="color:green">${information}</p>
+<p style="color:red">${errormsg}</p>
+
    <form action="login" method="post" onsubmit="return validateForm()">
 
        <label>Full Name</label>
