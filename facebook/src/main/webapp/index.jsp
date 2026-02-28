@@ -96,7 +96,7 @@
         <div class="mb-3">
             <label>Country</label>
             <select class="form-select" id="country" name="country">
-                <option value="">Select Country</option>
+                <option value="country">Select Country</option>
                 <option>India</option>
                 <option>South Korea</option>
                 <option>Japan</option>

@@ -9,4 +9,6 @@ public interface FacebookDAO {
     List<FacebookEntity> getFacebookData();
     FacebookEntity getDetailsBasedOnEmail(String email);
     FacebookEntity getDetailsBasedOnPhoneNumber(Long phoneNumber);
+    FacebookEntity getDDetaisBasedOnId(int id);
+
 }

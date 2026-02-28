@@ -89,4 +89,21 @@ public class FacebookDAOImpl implements FacebookDAO{
             entityManager.close();
         }
     }
+
+    @Override
+    public FacebookEntity getDDetaisBasedOnId(int id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            FacebookEntity facebookEntity = entityManager.find(FacebookEntity.class, id);
+
+            return facebookEntity;
+        } catch (Exception e) {
+            System.out.println("data is " + e.getMessage());
+            return null;
+        }finally {
+            entityManager.close();
+        }
+    }
 }

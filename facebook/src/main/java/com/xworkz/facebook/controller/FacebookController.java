@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -46,6 +47,18 @@ public class FacebookController {
         List<FacebookDTO> dtoList=facebookService.getDTO();
         model.addAttribute("message",dtoList);
         return "facebook";
+    }
+
+
+    @GetMapping("getData")
+    public String getFacebookDetails(@RequestParam int id,Model model){
+        System.out.println("ID is : " + id);
+        FacebookDTO dto = facebookService.getId(id);
+        if (dto!=null){
+            model.addAttribute("info",dto);
+            return "facebookDetails";
+        }
+        return "facebookDetails";
     }
     }
 
