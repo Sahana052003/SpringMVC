@@ -106,4 +106,19 @@ public class FacebookDAOImpl implements FacebookDAO{
             entityManager.close();
         }
     }
+
+    @Override
+    public void updatedFaceBookDetails(FacebookEntity facebookEntity) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try{
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.merge(facebookEntity);
+        transaction.commit();
+       } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
+            entityManager.close();
+        }
+        }
 }

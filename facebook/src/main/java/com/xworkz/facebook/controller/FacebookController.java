@@ -50,6 +50,7 @@ public class FacebookController {
     }
 
 
+
     @GetMapping("getData")
     public String getFacebookDetails(@RequestParam int id,Model model){
         System.out.println("ID is : " + id);
@@ -60,5 +61,14 @@ public class FacebookController {
         }
         return "facebookDetails";
     }
-    }
 
+
+
+    @PostMapping("update")
+    public String updateData(FacebookDTO facebookDTO,Model model){
+       facebookService.updateFacebookData(facebookDTO);
+        List<FacebookDTO> dto = facebookService.getDTO();
+        model.addAttribute("message",dto);
+        return "facebook";
+    }
+    }

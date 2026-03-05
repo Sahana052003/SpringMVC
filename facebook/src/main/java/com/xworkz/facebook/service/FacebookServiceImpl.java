@@ -117,4 +117,11 @@ public class FacebookServiceImpl implements FacebookService{
         }
         return null;
     }
+
+    @Override
+    public void updateFacebookData(FacebookDTO facebookDTO) {
+        FacebookEntity facebookEntity=new FacebookEntity();
+        BeanUtils.copyProperties(facebookDTO,facebookEntity);
+        facebookDAO.updatedFaceBookDetails(facebookEntity);
+    }
 }
