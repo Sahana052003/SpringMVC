@@ -11,4 +11,6 @@ public interface FacebookDAO {
     FacebookEntity getDetailsBasedOnPhoneNumber(Long phoneNumber);
     FacebookEntity getDDetaisBasedOnId(int id);
 
+    void updatedFaceBookDetails(FacebookEntity facebookEntity);
+
 }

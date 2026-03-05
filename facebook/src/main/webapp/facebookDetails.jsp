@@ -64,7 +64,8 @@
             </select>
             <div id="countryError" class="error"></div>
         </div>
-    
+
+    <button>Edit</button>
     </form>
 
 

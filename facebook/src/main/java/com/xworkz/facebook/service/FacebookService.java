@@ -15,4 +15,6 @@ public interface FacebookService {
 
     FacebookDTO getId(int id);
 
+    void updateFacebookData(FacebookDTO facebookDTO);
+
 }
