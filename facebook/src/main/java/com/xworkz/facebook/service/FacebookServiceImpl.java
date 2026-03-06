@@ -124,4 +124,9 @@ public class FacebookServiceImpl implements FacebookService{
         BeanUtils.copyProperties(facebookDTO,facebookEntity);
         facebookDAO.updatedFaceBookDetails(facebookEntity);
     }
+
+    @Override
+    public void deleteFacebookData(int id) {
+        facebookDAO.deleteFaceBookDetails(id);
+    }
 }

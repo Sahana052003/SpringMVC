@@ -17,4 +17,6 @@ public interface FacebookService {
 
     void updateFacebookData(FacebookDTO facebookDTO);
 
+    void deleteFacebookData(int id);
+
 }
