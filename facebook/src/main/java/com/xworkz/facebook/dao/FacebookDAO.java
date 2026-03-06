@@ -13,4 +13,6 @@ public interface FacebookDAO {
 
     void updatedFaceBookDetails(FacebookEntity facebookEntity);
 
+    void deleteFaceBookDetails(int id);
+
 }

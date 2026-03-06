@@ -1,4 +1,3 @@
-
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
@@ -19,6 +18,8 @@
 <th>MobileNumber</th>
 <th>Gender</th>
 <th>Country</th>
+<th>Update</th>
+<th>Delete</th>
 </tr>
 
 
@@ -31,6 +32,7 @@
 <td>${singleData.gender}</td>
 <td>${singleData.country}</td>
 <td><a href="getData?id=${singleData.id}">UPDATE</a></td>
+<td><a href="deleteData?id=${singleData.id}">DELETE</a></td>
 </tr>
 </c:forEach>
 </table>

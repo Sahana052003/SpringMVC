@@ -71,4 +71,13 @@ public class FacebookController {
         model.addAttribute("message",dto);
         return "facebook";
     }
+
+    @GetMapping("deleteData")
+    public String deleteData(@RequestParam int id, Model model){
+        facebookService.deleteFacebookData(id);
+
+        List<FacebookDTO> dto = facebookService.getDTO();
+        model.addAttribute("message",dto);
+        return "facebook";
+    }
     }

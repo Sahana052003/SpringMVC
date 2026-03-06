@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
+@NamedQuery(name = "deleteData",query="delete from FacebookEntity en where en.id=:iD")
 
 
 @NamedQuery(name = "data",query = "select entities from FacebookEntity entities")
