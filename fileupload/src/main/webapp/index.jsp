@@ -13,6 +13,12 @@
         <input type="file" name="file"><br><br>
 
         <input type="submit"></form>
+
+
     </form>
+    <a href="image.jsp">Get Image
+<img src="image/?filePath=C:/img/download (10).jpg1774952649352.jpg">
 </body>
 </html>
+
+
