@@ -54,5 +54,9 @@ public class FileUploadController {
         ServletOutputStream servletOutputStream=httpServletResponse.getOutputStream();
         IOUtils.copy(inputStream,servletOutputStream);
         httpServletResponse.flushBuffer();
+
+
+
+
     }
 }
