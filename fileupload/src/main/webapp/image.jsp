@@ -8,7 +8,6 @@
 <body>
 
 <h1>Image</h1>
-<img src="image/?filePath=C:/img/download (10).jpg1774952649352.jpg">
-
+<img src="image/?filePath=${filePath}">
 </body>
 </html>

@@ -30,4 +30,24 @@ public class FileUploadDAOImpl implements FileUploadDAo{
             entityManager.close();
         }
     }
+
+
+    @Override
+    public FileUploadEntity findByFilePath(String filePath) {
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            return entityManager
+                    .createNamedQuery("FileUploadEntity.findByFilePath", FileUploadEntity.class)
+                    .setParameter("path", filePath)
+                    .getSingleResult();
+
+        } catch (Exception e) {
+            System.out.println("Data not found: " + e.getMessage());
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
     }

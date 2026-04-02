@@ -1,7 +1,9 @@
 package com.xworkz.fileupload.controller;
 
 import com.xworkz.fileupload.dto.FileUploadDTO;
+import com.xworkz.fileupload.entity.FileUploadEntity;
 import com.xworkz.fileupload.service.FileUploadService;
+import com.xworkz.fileupload.utility.OtpSender;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,20 +31,36 @@ public class FileUploadController {
     @Autowired
     FileUploadService fileUploadService;
 
+
+    @Autowired
+    OtpSender otpSender;
+
+
+
     @PostMapping("login")
-    public String UploadFiles(@ModelAttribute FileUploadDTO fileUploadDTO) throws IOException {
-        System.out.println("Calling this .........");
-        System.out.println("Name is " + fileUploadDTO);
+    public String UploadFiles(@ModelAttribute FileUploadDTO fileUploadDTO, Model model) throws IOException {
+
         MultipartFile file = fileUploadDTO.getFile();
         byte[] bytes = file.getBytes();
+
         Path path = Paths.get("C:\\img\\" + file.getOriginalFilename() + System.currentTimeMillis() + ".jpg");
-        System.out.println(path);
-        Files.write(path,bytes);
+        Files.write(path, bytes);
 
         fileUploadDTO.setFilePath(path.toString());
-        fileUploadService.uploadFiles(fileUploadDTO);
-        System.out.println("Now file is added ");
-        return "index";
+
+        // ✅ send OTP
+        otpSender.sendSimpleMessage("sahananreddy52003@gmail.com", "OTP", "text");
+
+        // ✅ get SAME OTP (DO NOT generate again)
+        String otp = otpSender.getGeneratedOtp();
+
+        // ✅ save same OTP
+        fileUploadService.uploadFiles(fileUploadDTO, otp);
+
+        // pass filepath to OTP page
+        model.addAttribute("filePath", path.toString());
+
+        return "otp"; // go to OTP page
     }
 
 
@@ -58,5 +76,21 @@ public class FileUploadController {
 
 
 
+    }
+
+    @PostMapping("verifyOtp")
+    public String verifyOtp(String otp, String filePath, Model model) {
+
+        // fetch from DB (you need DAO method)
+        FileUploadEntity entity = fileUploadService.findByFilePath(filePath);
+
+        if(entity != null && entity.getOtp().equals(otp)) {
+            model.addAttribute("filePath", filePath);
+            return "image"; // success
+        } else {
+            model.addAttribute("error", "Invalid OTP");
+            model.addAttribute("filePath", filePath);
+            return "otp";
+        }
     }
 }
