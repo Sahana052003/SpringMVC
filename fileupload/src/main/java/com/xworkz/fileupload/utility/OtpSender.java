@@ -13,7 +13,7 @@ public class OtpSender {
     @Autowired
     JavaMailSender javaMailSender;
 
-    private String generatedOtp; // ✅ store OTP
+    private String generatedOtp;
 
     public String generateOtp() {
         generatedOtp = String.valueOf(100000 + new Random().nextInt(900000));
@@ -22,11 +22,11 @@ public class OtpSender {
 
     public void sendSimpleMessage(String to, String subject, String text) {
 
-        String otp = generateOtp(); // generate once
+        String otp = generateOtp();
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("sn389854@gmail.com");
-        message.setTo(to); // ✅ fix email
+        message.setTo(to);
         message.setSubject("OTP");
         message.setText(otp);
 
