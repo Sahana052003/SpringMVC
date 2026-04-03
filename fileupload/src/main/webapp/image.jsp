@@ -1,13 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html>
+<head><title>Image</title></head>
 <body>
-
-<h1>Image</h1>
-<img src="image/?filePath=${filePath}">
+    <h1>Your Uploaded Image</h1>
+    <img src="image?filePath=${param.filePath}" style="max-width:600px;">
 </body>
 </html>
