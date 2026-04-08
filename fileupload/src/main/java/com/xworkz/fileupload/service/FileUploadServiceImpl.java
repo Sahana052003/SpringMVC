@@ -18,14 +18,21 @@ public class FileUploadServiceImpl implements FileUploadService{
 
 
 
-    @Override
-    public void uploadFiles(FileUploadDTO fileUploadDTO,String otp) {
-        FileUploadEntity fileUploadEntity = new FileUploadEntity();
-        BeanUtils.copyProperties(fileUploadDTO, fileUploadEntity);
-        fileUploadEntity.setOtp(otp);
-        fileUploadDAo.uploadData(fileUploadEntity);
-        System.out.println("Data is Saved ");
-    }
+//    @Override
+//    public void uploadFiles(FileUploadDTO fileUploadDTO,String otp) {
+//        FileUploadEntity fileUploadEntity = new FileUploadEntity();
+//        BeanUtils.copyProperties(fileUploadDTO, fileUploadEntity);
+//        fileUploadEntity.setOtp(otp);
+//        fileUploadDAo.uploadData(fileUploadEntity);
+//        System.out.println("Data is Saved ");
+//    }
+@Override
+public void uploadFiles(FileUploadDTO fileUploadDTO) {
+    FileUploadEntity fileUploadEntity = new FileUploadEntity();
+    BeanUtils.copyProperties(fileUploadDTO, fileUploadEntity);
+    fileUploadDAo.uploadData(fileUploadEntity);
+    System.out.println("Data is Saved ");
+}
 
     @Override
     public FileUploadEntity findByFilePath(String filePath) {

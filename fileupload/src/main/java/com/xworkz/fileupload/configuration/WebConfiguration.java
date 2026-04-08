@@ -1,6 +1,7 @@
 package com.xworkz.fileupload.configuration;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +19,11 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan("com.xworkz.fileupload")
-
+@Slf4j
 public class WebConfiguration {
     public WebConfiguration(){
-        System.out.println("WebConfiguration is Called");
+
+        log.info("WebConfiguration is Called");
     }
 
     @Bean

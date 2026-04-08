@@ -20,5 +20,3 @@
 <img src="image/?filePath=C:/img/download (10).jpg1774952649352.jpg">
 </body>
 </html>
-
-

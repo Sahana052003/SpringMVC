@@ -1,9 +1,11 @@
+
 package com.xworkz.fileupload.controller;
 
 import com.xworkz.fileupload.dto.FileUploadDTO;
 import com.xworkz.fileupload.entity.FileUploadEntity;
 import com.xworkz.fileupload.service.FileUploadService;
 import com.xworkz.fileupload.utility.OtpSender;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,10 @@ import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/")
+@Slf4j
 public class FileUploadController {
     public FileUploadController() {
-        System.out.println("FileUploadController is called");
+        log.info("FileUploadController is called");
     }
 
     @Autowired
@@ -44,10 +47,11 @@ public class FileUploadController {
 
         fileUploadDTO.setFilePath(path.toString());
 
-        otpSender.sendSimpleMessage("sahananreddy52003@gmail.com", "OTP", "text");
-        String otp = otpSender.getGeneratedOtp();
+//        otpSender.sendSimpleMessage("sahananreddy52003@gmail.com", "OTP", "text");
+//        String otp = otpSender.getGeneratedOtp();
 
-        fileUploadService.uploadFiles(fileUploadDTO, otp);
+//        fileUploadService.uploadFiles(fileUploadDTO, otp);
+        fileUploadService.uploadFiles(fileUploadDTO);
         model.addAttribute("filePath", path.toString());
 
         System.out.println("filePath set in model: " + path.toString()); // debug
@@ -66,19 +70,21 @@ public class FileUploadController {
         ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
         IOUtils.copy(inputStream, servletOutputStream);
         httpServletResponse.flushBuffer();
+        log.info("erdtfyguhicdfsjv");
+
     }
 
 
-    @PostMapping("verifyOtp")
-    public String verifyOtp(
-            @RequestParam("otp") String otp,
-            @RequestParam("filePath") String filePath) {
-
-        FileUploadEntity entity = fileUploadService.findByFilePath(filePath);
-
-        if (entity.getOtp().trim().equals(otp.trim())) {
-            return "redirect:image?filePath=" + filePath;
-        }
-        return "otp";
-    }
+//    @PostMapping("verifyOtp")
+//    public String verifyOtp(
+//            @RequestParam("otp") String otp,
+//            @RequestParam("filePath") String filePath) {
+//
+//        FileUploadEntity entity = fileUploadService.findByFilePath(filePath);
+//
+//        if (entity.getOtp().trim().equals(otp.trim())) {
+//            return "redirect:image?filePath=" + filePath;
+//        }
+//        return "otp";
+//    }
 }
