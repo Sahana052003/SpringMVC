@@ -1,3 +1,4 @@
+
 package com.xworkz.fileupload.entity;
 
 import lombok.AllArgsConstructor;
@@ -23,5 +24,5 @@ public class FileUploadEntity {
 
     private String name;
     private String filePath;
-    private String otp;
+    //private String otp;
 }
